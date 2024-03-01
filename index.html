@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+
+    <title>RJ College Classroom </title>
+    <style>
+         body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #DAF7A6;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer {
+            background-color: #DAF7A6;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+         main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .form-container {
+            margin-top: 22px;
+            display: none;
+        }
+        fieldset {
+            border: 1px solid #ccc;
+            border-radius: 10px; /* Set border-radius for a curved appearance */
+            padding: 10px;
+            width: 200px;
+            margin-left: 580px;
+}
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin: 5px 0;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #7D9EC1;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: orange;
+            color: black;
+        }
+
+        #roleSelect {
+            width: 300px; /* Set the width to around 300 pixels */
+            padding: 10px; /* Add some padding for better aesthetics */
+            border: 1px solid #ccc; /* Add a border for a 3D effect */
+            border-radius: 5px; /* Add rounded corners for a modern look */
+            font-size: 16px; /* Set the font size */
+        }
+
+        /* Additional styles for the teacher and student forms */
+        #teacherForm,
+        #studentForm {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        
+    <h1>Ramniranjan Jhunjhunwala College of Arts. Science & Commerce</h1>
+
+<img src="https://rjcollegemainwebsitedata.s3.ap-south-1.amazonaws.com/wp-content/uploads/2016/12/rjcollege-logo-1.png" alt="RJ College Logo">
+
+    </header>
+
+   <main>
+        <div>
+            <label for="roleSelect">Select Role:</label>
+            <select id="roleSelect" name="role" onchange="showForm()">
+                <option value="" selected disabled>Select role</option>
+                <option value="teacher">Teacher</option>
+                <option value="student">Student</option>
+            </select>
+        </div>
+
+        
+  
+<!-- Teacher Form -->
+<div id="teacherForm" style="margin-top: 100px; margin-left: auto; margin-right: auto;">
+    <fieldset>
+        <form id="teacherLoginForm">
+            <label for="teacherUsername">Username:</label>
+            <input type="text" id="teacherUsername" name="teacherUsername" placeholder="teacher">
+            <label for="teacherPassword">Password:</label>
+            <input type="password" id="teacherPassword" name="teacherPassword" placeholder="123">
+            <button type="submit">Submit</button>
+        </form>
+    </fieldset>
+</div>
+
+<!-- Student Form -->
+<div id="studentForm" style="margin-top: 100px; margin-left: auto; margin-right: auto;">
+    <fieldset>
+        <form id="studentLoginForm">
+            <label for="studentUsername">Username:</label>
+            <input type="text" id="studentUsername" name="studentUsername" placeholder="student">
+            <label for="studentPassword">Password:</label>
+            <input type="password" id="studentPassword" name="studentPassword" placeholder="111">
+            <button type="submit">Submit</button>
+        </form>
+    </fieldset>
+</div>
+    </main>
+
+    <footer>
+        <p>Rj College Edu</p>
+    <p>TYBSC IT - RJ COLLEGE</p>
+    </footer>
+
+    <script>
+
+      // Add an event listener for the student form submission
+    document.getElementById('studentLoginForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+
+      // Get the entered username and password
+      var username = document.getElementById('studentUsername').value;
+      var password = document.getElementById('studentPassword').value;
+
+      // Check if the credentials are valid
+      if (username === 'student' && password === '111') {
+          // Redirect to the studentpage.html page
+          window.location.href = 'studentpage.html';
+      } else {
+          // Display an error message or perform other actions for invalid credentials
+          alert('Invalid username or password for student.');
+      }
+  });
+
+
+
+      document.getElementById('teacherLoginForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        // Get the entered username and password
+        var username = document.getElementById('teacherUsername').value;
+        var password = document.getElementById('teacherPassword').value;
+
+        // Check if the credentials are valid
+        if (username === 'teacher' && password === '123') {
+            // Redirect to the dashboard.html page
+            window.location.href = 'dashboard.html';
+        } else {
+            // Display an error message or perform other actions for invalid credentials
+            alert('Invalid username or password for teacher.');
+        }
+    });
+
+
+        function showForm() {
+            var roleSelect = document.getElementById("roleSelect");
+            var formContainer = document.getElementById("formContainer");
+            var teacherForm = document.getElementById("teacherForm");
+            var studentForm = document.getElementById("studentForm");
+
+            // Hide all forms
+            teacherForm.style.display = "none";
+            studentForm.style.display = "none";
+
+            // Show the selected form
+            if (roleSelect.value === "teacher") {
+                teacherForm.style.display = "block";
+            } else if (roleSelect.value === "student") {
+                studentForm.style.display = "block";
+            }
+
+            // Show the form container
+            formContainer.style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
